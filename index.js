@@ -9,19 +9,23 @@ function MockPlugin(argv) {
     this.utils = new pluginutils("steamer-plugin-mock");
     // 默认路径是'./mock/db.js'，如果不存在会进行创建
     this.filePath = './mock/db.js';
+    this.exampleBuild = false;
 }
 
 MockPlugin.prototype.init = function() {
-    console.log(this.argv);
+    //console.log(this.argv);
 
+    this.utils.printTitle("开始mock");
     let filePath = this.argv.config;
     if (filePath) {
+        this.utils.info("使用" + filePath + "作为mock数据");
         this.use(filePath);
     } else {
         if (fs.existsSync(this.filePath)) {
-            this.utils.warn("使用" + this.filePath + "作为Mock数据");
+            this.utils.info("使用" + this.filePath + "作为mock数据");
             this.use(this.filePath);
         } else {
+            this.uitls.info("未检测到'./mock/db.js'，正在自动生成...");
             this.createExample(this.use);
         }
     }
@@ -41,6 +45,8 @@ MockPlugin.prototype.createExample = function(cb) {
         })
         // call the callback when finishing the copy
         writeStream.once('close', ()=>{
+            this.utils.info("根据模版生成'./mock/db.js'成功");
+            this.exampleBuild = true;
             cb(this.filePath);
         })
 
@@ -48,14 +54,12 @@ MockPlugin.prototype.createExample = function(cb) {
 }
 
 MockPlugin.prototype.use = function(filePath) {
+    this.utils.info("正在启动mock服务器...");
     const jsonServer = require('json-server');
     const server = jsonServer.create();
     let data = null;
     let execPath = process.execPath;
     filePath = path.resolve(filePath);
-    console.log(filePath);
-    console.log(path.extname(filePath));
-
     if (path.extname(filePath) == '.js') {
         let dataFn = require(filePath);
         if (typeof dataFn !== 'function') {
@@ -72,7 +76,10 @@ MockPlugin.prototype.use = function(filePath) {
 
     server.use(router);
     server.listen('6800', ()=>{
-        console.log('json server running on 6800');
+        console.log('json-server已启动并在6800端口运行');
+        if (this.exampleBuild) {
+            console.log("请访问localhost:6800/users查看效果");
+        }
     })
 }
 
@@ -80,9 +87,9 @@ MockPlugin.prototype.help = function() {
 	this.utils.printUsage('steamer plugin mock', 'mock');
 	this.utils.printOption([
 		{
-			option: "db",
-			alias: "d",
-			description: "The mock data file path"
+			option: "config",
+			alias: "c",
+			description: "Mock文件的路径"
 		},
 	]);
 };
