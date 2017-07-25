@@ -1,76 +1,34 @@
-# steamer-plugin-example
+# steamer-plugin-mock
 
-steamer plugin example
+steamer-plugin-mock 是用于快速给您的steamer项目添加本地mock假数据的功能，可以用于模拟后台接口进行测试。
 
-* Confirm the steamer CLI tool is installed. If not, please visit https://github.com/steamerjs/steamerjs
+使用的库有[json-server](https://www.npmjs.com/package/json-server#module)和[faker](https://github.com/marak/Faker.js/)
 
-After finishing this plugin example, you can use this plugin like this:
+* 提示：请先确保您已安装steamerjs https://github.com/steamerjs/steamerjs
 
+# 使用
+
+### 用默认的文件快速搭建一个mock服务器
 ```javascript
-steamer example -c config.js
-// or
-steamer example --config config.js
+steamer mock
 ```
+此插件会为您自动生成`mock`目录并在此目录生成一个默认的`db.js`文件。然后运行json-server在`6800`端口上。
+您之后可以修改`db.js`来完成您自己的mock需求。
 
-
-## How to write a steamerjs plugin
-
-* Create a function as the plugin
-
+### 使用指定文件搭建mock服务器
 ```javascript
-function ExamplePlugin(argv) {
-	this.argv = argv;
-}
+steamer mock --config xxx.js/xxx.json
 ```
-When user inputs the plugin command, the arguments are passed to this function.
+此插件会使用`--config`参数所指定的文件运行json-server。
+* 注意：如果使用js文件，您必须`export`一个Object对象。
 
-For more information of the arguments，please visit [yargs](https://github.com/yargs/yargs).
+### 修改Webpack配置
+请确定`steamer.config.js`中有`"api": "//localhost:6800/"`
+* TODO: 这里还需要Steamer本身的支持，在`server.js`中添加对`api`路径的代理转发
 
-* `init` method
+# 说明
+json-server根据传入的`Object`或者`JSON`文件的key作为API路径，值则作为返回的结果。
 
-Create a `init` method for this plugin, the method will be called when the command works.
+[faker](https://github.com/marak/Faker.js/)是用于快速生成假数据的库，包括常用的头像、邮箱、电话号码等信息，推荐使用。
 
-```javascript
-ExamplePlugin.prototype.init = function() {
-	console.log(this.argv);
-};
-
-module.exports = ExamplePlugin;
-```
-
-
-* `help` method
-
-Create a `help` method for this plugin.
-
-```javascript
-ExamplePlugin.prototype.help = function() {
-	console.log("Usage of Example: ");
-}
-```
-
-When use command `steamer [plugin name] -h` or `steamer [plugin name] --help`, the `help` method will be called to output docs.
-
-* Specify a main file and a bin file in package.json
-
-```javascript
-"main": "index.js"
-```
-
-## `Util` library
-
-We provide a `Util` library for you to develop plugins. 
-
-* [steamer-pluginutils](https://github.com/SteamerTeam/steamer-pluginutils)
-
-
-## Use plugin in terminal
-
-```javascript
-// Link your plugin to global path so you can use `steamer example` directly
-npm link
-
-// After finishing the development, you can `unlink` the plugin
-npm unlink
-
-```
+想了解更多关于json-server的配置，请访问https://github.com/typicode/json-server
