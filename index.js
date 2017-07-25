@@ -25,7 +25,7 @@ MockPlugin.prototype.init = function() {
             this.utils.info("使用" + this.filePath + "作为mock数据");
             this.use(this.filePath);
         } else {
-            this.uitls.info("未检测到'./mock/db.js'，正在自动生成...");
+            this.utils.info("未检测到'./mock/db.js'，正在自动生成...");
             this.createExample(this.use);
         }
     }
@@ -47,7 +47,7 @@ MockPlugin.prototype.createExample = function(cb) {
         writeStream.once('close', ()=>{
             this.utils.info("根据模版生成'./mock/db.js'成功");
             this.exampleBuild = true;
-            cb(this.filePath);
+            cb.call(this, this.filePath);
         })
 
     })
@@ -64,9 +64,14 @@ MockPlugin.prototype.use = function(filePath) {
         let dataFn = require(filePath);
         if (typeof dataFn !== 'function') {
             this.utils.error("传入了一个js文件，但是export的不是一个function");
+            return;
         }
         data = dataFn();
-        console.log(data);
+        if (typeof data !== 'object') {
+            this.utils.error("js文件export的function返回的不是一个object");
+            return;
+        }
+        //console.log(data);
     } else if (path.extname(filePath) == '.json') {
         data = filePath;
     } else {
@@ -76,9 +81,9 @@ MockPlugin.prototype.use = function(filePath) {
 
     server.use(router);
     server.listen('6800', ()=>{
-        console.log('json-server已启动并在6800端口运行');
+        console.log('mock服务已启动并在 http://localhost:6800 运行');
         if (this.exampleBuild) {
-            console.log("请访问localhost:6800/users查看效果");
+            console.log("模版mock服务启动成功，请访问 http://localhost:6800/users 查看效果");
         }
     })
 }
