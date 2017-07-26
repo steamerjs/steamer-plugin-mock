@@ -2,9 +2,11 @@
  * steamer-plugin-mock 样例mock文件
  */
 const faker = require('faker');
-function generateData () {
+module.exports = () => {
     let data = {
-        users: []
+        users: [],
+        foo: [],
+        bar: [],
     };
     // For more usage of faker.js, please visit http://marak.github.io/faker.js/
     for(let id = 0; id < 50; id++) {
@@ -19,7 +21,3 @@ function generateData () {
     }
     return data;
 }
-const data = generateData();
-
-
-module.exports = ()=>{return data};

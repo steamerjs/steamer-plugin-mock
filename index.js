@@ -16,19 +16,23 @@ function MockPlugin(argv) {
 
 MockPlugin.prototype.init = function() {
     //this.utils.printTitle("开始mock");
-    chalk.cyan("\\{^_^}/ hi! 开始mock");
+    this.utils.info("\\{^_^}/ hi! 开始mock");
+    console.log("");
     this.host = this.argv.host == null? 'localhost': argv.host;
     this.port = this.argv.port == null? '6800': argv.port;
     let filePath = this.argv.config;
     if (filePath) {
         this.utils.info("使用" + filePath + "作为mock数据");
+        console.log("");
         this.use(filePath);
     } else {
         if (fs.existsSync(this.filePath)) {
             this.utils.info("使用" + this.filePath + "作为mock数据");
+            console.log("");
             this.use(this.filePath);
         } else {
             this.utils.info("( ´∀`)第一次使用？未检测到'./mock/db.js'，正在自动生成...");
+            console.log("");
             this.createExample(this.use);
         }
     }
@@ -48,7 +52,8 @@ MockPlugin.prototype.createExample = function(cb) {
         })
         // call the callback when finishing the copy
         writeStream.once('close', ()=>{
-            this.utils.info("根据模版生成'./mock/db.js'成功ヽ( ^∀^)ﾉ");
+            this.utils.info("根据模版生成'./mock/db.js'成功ヽ( ^∀^)ﾉ");            
+            console.log("");
             this.exampleBuild = true;
             cb.call(this, this.filePath);
         })

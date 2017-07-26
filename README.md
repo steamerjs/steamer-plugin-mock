@@ -28,6 +28,27 @@ steamer mock --config xxx.js/xxx.json
 
 # 说明
 json-server根据传入的`Object`或者`JSON`文件的key作为API路径，值则作为返回的结果。
+json-server支持`RESTful`的路由，如
+
+* 获取第一个用户
+```
+GET /users/1
+```
+
+* 分页
+```
+GET /users?_pages=7
+```
+
+* 筛选
+```
+GET /users?id=2
+```
+
+* 排序
+```
+GET /users?_sort=id&_order=asc
+```
 
 [faker](https://github.com/marak/Faker.js/)是用于快速生成假数据的库，包括常用的头像、邮箱、电话号码等信息，推荐使用。
 
