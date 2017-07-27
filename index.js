@@ -8,6 +8,18 @@ const chalk = require('chalk');
 function MockPlugin(argv) {
 	this.argv = argv;
     this.utils = new pluginutils("steamer-plugin-mock");
+    // 自定义host
+    this.host = this.argv.host || 'localhost';
+    // 自定义端口
+    this.port = this.argv.port || '6800';
+    // 自定义URL
+    if (!!this.argv.route){
+        if (path.extname(this.argv.route) === '.json') {
+            this.route = require(path.resolve(this.argv.route));
+        } else {
+            chalk.red("需要指定一个json文件来自定义路径！");
+        }
+    }
     // 默认路径是'./mock/db.js'，如果不存在会进行创建
     this.filePath = './mock/db.js';
     this.exampleBuild = false;
@@ -18,8 +30,6 @@ MockPlugin.prototype.init = function() {
     //this.utils.printTitle("开始mock");
     this.utils.info("\\{^_^}/ hi! 开始mock");
     console.log("");
-    this.host = this.argv.host == null? 'localhost': argv.host;
-    this.port = this.argv.port == null? '6800': argv.port;
     let filePath = this.argv.config;
     if (filePath) {
         this.utils.info("使用" + filePath + "作为mock数据");
@@ -114,11 +124,15 @@ MockPlugin.prototype.use = function(filePath) {
         }
         //console.log(data);
     } else if (path.extname(filePath) == '.json') {
-        data = filePath;
+        data = require(filePath);
     } else {
         this.utils.error("使用的mock文件后缀名只能是'js'或者'json'");
     }
     const router = jsonServer.router(data);
+    if(!!this.route){
+        console.log(this.route);
+        server.use(jsonServer.rewriter(this.route));
+    }
     server.use(router);
     server.listen(this.port, ()=>{
         console.log('mock服务已启动ヽ( ^∀^)ﾉ');

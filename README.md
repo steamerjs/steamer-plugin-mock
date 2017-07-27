@@ -31,6 +31,29 @@ steamer mock --port 8888
 ```
 使用指定端口运行json-server
 
+## `--route`
+```javascript
+steamer mock --route route.js
+```
+使用指定自定义配置来自定URL
+* 示例文件
+```json
+{
+  "/api/*": "/$1",
+  "/:resource/:id/show": "/:resource/:id",
+  "/posts/:category": "/posts?category=:category",
+  "/articles\\?id=:id": "/posts/:id"
+}
+```
+效果如下
+```
+/api/posts # → /posts
+/api/posts/1  # → /posts/1
+/posts/1/show # → /posts/1
+/posts/javascript # → /posts?category=javascript
+/articles?id=1 # → /posts/1
+```
+
 # 代理转发
 可以设置`steamer.config.js`中`"api": "//localhost:<port>/"`
 将后台接口转发到json-server
