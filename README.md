@@ -15,7 +15,7 @@ npm i -g steamer-plugin-mock
 steamer mock
 ```
 
-此插件会为您在项目中自动生成 `mock` 目录并在此目录生成一个默认的 `db.js` 文件。然后运行json-server在 `6800` 端口上。
+此插件会为您在项目中自动生成 `mock` 目录并在此目录生成一个默认的 `db.js` 文件。然后运行 [JSON-Server](https://github.com/typicode/json-server) 在 `6800` 端口上。
 您之后可以修改`db.js`来完成您自己的mock需求。
 
 效果如图：
@@ -24,8 +24,8 @@ steamer mock
 <details>
 
 ## 路由说明
-服务器根据传入的`Object`或者`JSON`文件的key作为API资源路径，值则作为返回的结果。
-服务器完全支持`RESTful`的路由，如
+[JSON-Server](https://github.com/typicode/json-server) 服务器根据传入的`Object`或者`JSON`文件的key作为API资源路径，值则作为返回的结果。
+[JSON-Server](https://github.com/typicode/json-server) 服务器完全支持`RESTful`的路由，如
 
 * 获取第一个用户
 ```
@@ -67,7 +67,7 @@ steamer mock --route route.json
 ```
 使用指定自定义配置来自定URL，比如当您遇到一下场景
 
-1. 真正想访问的接口资源url是`api/xxx`，需要转发到json-server
+1. 真正想访问的接口资源url是`api/xxx`，需要转发到[JSON-Server](https://github.com/typicode/json-server)
 2. 想通过`/posts/:category`的方式访问博客文章的不同类别
 
 您可以如下配置：
