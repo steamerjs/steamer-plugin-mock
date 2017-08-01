@@ -89,6 +89,33 @@ steamer mock --route route.json
 ```
 
 
-## 推荐使用的假数据生成库
+## 自定义假数据
+如果你想快速生成一些假数据，可以借助下面两个推荐库的能力。
+
 * [Faker](https://github.com/marak/Faker.js/) 是用于快速生成假数据的库，包括常用的头像、邮箱、电话号码等信息，推荐使用。
 * [Mock](http://mockjs.com/) 同样是生成随机数据的库，并且能生成常用的随机汉字。
+
+下面以 `Faker` 作为例子，介绍如何生成用户列表数据：
+
+```javascript
+const faker = require('faker');
+module.exports = () => {
+    let data = {
+        users: [],
+        foo: [],
+        bar: [],
+    };
+    // For more usage of faker.js, please visit http://marak.github.io/faker.js/
+    for(let id = 0; id < 50; id++) {
+        data.users.push({
+            id: id,
+            firstName: faker.name.firstName(),
+            lastName: faker.name.lastName(),
+            email: faker.internet.email(),
+            phoneNumber: faker.phone.phoneNumber(),
+            avatar: faker.internet.avatar()
+        })
+    }
+    return data;
+}
+```
