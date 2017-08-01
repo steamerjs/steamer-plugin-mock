@@ -21,7 +21,10 @@ steamer mock
 效果如图：
 ![](https://github.com/steamerjs/steamer-plugin-mock/blob/master/example.jpg)
 
-<details>
+
+## 在 steamer 脚手架中使用
+如果你想在 [steamer 系列脚手架](https://steamerjs.github.io/docs/Starterkit.html)中使用，`steamer-plugin-mock` 的功能，可以设置 `config/steamer.config.js` 中 `"api-port": 6800` 的端口。
+
 
 ## 路由说明
 [JSON-Server](https://github.com/typicode/json-server) 服务器根据传入的`Object`或者`JSON`文件的key作为API资源路径，值则作为返回的结果。
@@ -85,10 +88,6 @@ steamer mock --route route.json
 /posts/javascript # → /posts?category=javascript
 ```
 
-## 在 steamer 脚手架中使用
-如果你想在 steamer 系列脚手架中使用，`steamer-plugin-mock` 的功能，可以设置 `config/steamer.config.js` 中 `"api-port": 6800` 的端口。
-
-</details>
 
 ## 推荐使用的假数据生成库
 * [Faker](https://github.com/marak/Faker.js/) 是用于快速生成假数据的库，包括常用的头像、邮箱、电话号码等信息，推荐使用。
