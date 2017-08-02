@@ -19,7 +19,7 @@ steamer mock
 您之后可以修改`db.js`来完成您自己的mock需求。
 
 效果如图：
-![](https://github.com/steamerjs/steamer-plugin-mock/blob/master/example.jpg)
+![](http://pub.idqqimg.com/pc/misc/files/20170802/5c15a3282b594217b046a6d1b6966bd8.jpg)
 
 
 ## 在 steamer 脚手架中使用
