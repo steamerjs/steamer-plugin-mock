@@ -59,17 +59,17 @@ MockPlugin.prototype.createExample = function(cb) {
         readStream.once('error', (error)=>{
             console.error('Read example.js error!');
             console.error(error);
-        })
+        });
         // call the callback when finishing the copy
         writeStream.once('close', ()=>{
             this.utils.info("根据模版生成'./mock/db.js'成功ヽ( ^∀^)ﾉ");            
             console.log("");
             this.exampleBuild = true;
             cb.call(this, this.filePath);
-        })
+        });
 
-    })
-}
+    });
+};
 
 
 /**
@@ -80,13 +80,12 @@ MockPlugin.prototype.createExample = function(cb) {
  * @param {*} rules 
  */
 function prettyPrint(host, port, object, rules) {
-  var host = host === '0.0.0.0' ? 'localhost' : host;
-  var port = port;
-  var root = `http://${host}:${port}`;
+  host = host === '0.0.0.0' ? 'localhost' : host;
+  let root = `http://${host}:${port}`;
 
   console.log();
   console.log(chalk.bold('  资源'));
-  for (var prop in object) {
+  for (let prop in object) {
     console.log(`  ${root}/${prop}`);
   }
 
@@ -109,7 +108,6 @@ MockPlugin.prototype.use = function(filePath) {
     const jsonServer = require('json-server');
     const server = jsonServer.create();
     let data = null;
-    let execPath = process.execPath;
     filePath = path.resolve(filePath);
     if (path.extname(filePath) == '.js') {
         let dataFn = require(filePath);
@@ -138,11 +136,11 @@ MockPlugin.prototype.use = function(filePath) {
         console.log('mock服务已启动ヽ( ^∀^)ﾉ');
         if (this.exampleBuild) {
             chalk.cyan("mock服务根据模版文件启动成功ヽ( ^∀^)ﾉ，您现在可以修改'db.js'文件模拟后台接口了");
-            chalk.cyan("体验不错？请点击链接https://github.com/steamerjs/steamer-plugin-mock star一下！")
+            chalk.cyan("体验不错？请点击链接https://github.com/steamerjs/steamer-plugin-mock star一下！");
         }
         prettyPrint(this.host, this.port, data, this.rules);
-    })
-}
+    });
+};
 
 
 
