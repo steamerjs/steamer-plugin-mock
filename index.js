@@ -53,8 +53,8 @@ class MockPlugin extends SteamerPlugin {
 
     createExample(cb) {
         let exampleFile = path.join(__dirname, 'example.js');
-
         this.fs.copySync(exampleFile, this.filePath);
+
         this.info('根据模版生成\'./mock/db.js\'成功ヽ( ^∀^)ﾉ');
         this.exampleBuild = true;
         cb.call(this, this.filePath);

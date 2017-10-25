@@ -19,7 +19,7 @@ steamer mock
 您之后可以修改`db.js`来完成您自己的mock需求。
 
 效果如图：
-![](https://github.com/steamerjs/steamer-plugin-mock/blob/master/example.jpg)
+![](http://pub.idqqimg.com/pc/misc/files/20170802/5c15a3282b594217b046a6d1b6966bd8.jpg)
 
 
 ## 在 steamer 脚手架中使用
@@ -89,8 +89,8 @@ steamer mock --route route.json
 ```
 
 
-## 自定义假数据
-如果你想快速生成一些假数据，可以借助下面两个推荐库的能力。
+## 使用js生成假数据
+如果你想用强大的js快速生成一些假数据，可以借助下面两个推荐库的能力。
 
 * [Faker](https://github.com/marak/Faker.js/) 是用于快速生成假数据的库，包括常用的头像、邮箱、电话号码等信息，推荐使用。
 * [Mock](http://mockjs.com/) 同样是生成随机数据的库，并且能生成常用的随机汉字。
@@ -119,3 +119,32 @@ module.exports = () => {
     return data;
 }
 ```
+
+以上js文件通过`steamer mock --config example.js`运行后，使用HTTP协议`GET localhost:6800/users`，即可获得50个随机生成的用户信息组成的数组：
+```javascript
+[
+  {
+    "id": 0,
+    "firstName": "Micheal",
+    "lastName": "McKenzie",
+    "email": "Taya29@hotmail.com",
+    "phoneNumber": "837-316-7833",
+    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/poormini/128.jpg"
+  },
+  ...
+]
+```
+可以使用RESTful的语法操作数据：
+
+`GET localhost:6800/users/2` 获取第二个用户
+```javascript
+{
+  "id": 2,
+  "firstName": "Devante",
+  "lastName": "Crooks",
+  "email": "Bonnie.Pouros82@gmail.com",
+  "phoneNumber": "(108) 724-7222 x5486",
+  "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/silv3rgvn/128.jpg"
+}
+```
+`DELETE localhost:6800/users/3` 删除第三个用户

@@ -1,7 +1,6 @@
 'use strict';
 
 const path = require('path'),
-    chalk = require('chalk'),
     expect = require('chai').expect,
     sinon = require('sinon'),
     SteamerMock = require('../index.js');
