@@ -15,7 +15,7 @@ npm i -g steamer-plugin-mock
 steamer mock
 ```
 
-此插件会为您在项目中自动生成 `mock` 目录并在此目录生成一个默认的 `db.js` 文件。然后运行 [JSON-Server](https://github.com/typicode/json-server) 在 `6800` 端口上。
+此插件会为您在项目中自动生成 `mock` 目录并在此目录生成一个默认的 `db.js` 文件。然后运行 [JSON-Server](https://github.com/typicode/json-server) 在 `7000` 端口上。
 您之后可以修改`db.js`来完成您自己的mock需求。
 
 效果如图：
@@ -23,7 +23,7 @@ steamer mock
 
 
 ## 在 steamer 脚手架中使用
-如果你想在 [steamer 系列脚手架](https://steamerjs.github.io/docs/Starterkit.html)中使用，`steamer-plugin-mock` 的功能，可以设置 `config/steamer.config.js` 中 `"api-port": 6800` 的端口。
+如果你想在 [steamer 系列脚手架](https://steamerjs.github.io/docs/Starterkit.html)中使用，`steamer-plugin-mock` 的功能，可以设置 `config/steamer.config.js` 中 `"api-port": 7000` 的端口。
 
 
 ## 路由说明
