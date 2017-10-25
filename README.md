@@ -2,6 +2,11 @@
 
 快速添加本地 mock 假数据命令。可以用于模拟后台接口进行测试。本项目的服务器是基于 [JSON-Server](https://github.com/typicode/json-server) 进行搭建。与服务器相关的路由、转发相关，可参考 [JSON-Server](https://github.com/typicode/json-server) 的文档。
 
+[![NPM Version](https://img.shields.io/npm/v/steamer-plugin-mock.svg?style=flat)](https://www.npmjs.com/package/steamer-plugin-mock)
+[![Travis](https://img.shields.io/travis/steamerjs/steamer-plugin-mock.svg)](https://travis-ci.org/steamerjs/steamer-plugin-mock)
+[![Deps](https://david-dm.org/steamerjs/steamer-plugin-mock.svg)](https://david-dm.org/steamerjs/steamer-plugin-mock)
+[![Coverage](https://img.shields.io/coveralls/steamerjs/steamer-plugin-mock.svg)](https://coveralls.io/github/steamerjs/steamer-plugin-mock)
+
 ## 安装
 ```javascript
 npm i -g steamerjs
