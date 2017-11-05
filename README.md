@@ -28,7 +28,8 @@ steamer mock
 
 
 ## 在 steamer 脚手架中使用
-如果你想在 [steamer 系列脚手架](https://steamerjs.github.io/docs/Starterkit.html)中使用，`steamer-plugin-mock` 的功能，可以设置 `config/steamer.config.js` 中 `"api-port": 7000` 的端口。
+如果你想在 [steamer 系列脚手架](https://steamerjs.github.io/docs/Starterkit.html)中使用，`steamer-plugin-mock` 的功能，可以设置 `config/steamer.config.js` 中 `"api-port": 7000` 的端口。此外，脚手架默认转发至 `/api/` 路径，因此 `steamer-plugin-mock` 需要配置 `--route` 参数，详细可参考后面相关的文档。
+
 
 
 ## 路由说明
