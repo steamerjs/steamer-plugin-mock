@@ -105,10 +105,10 @@ class MockPlugin extends SteamerPlugin {
 
     /**
      * 服务器启动时打印所有资源
-     * @param {*} host 
-     * @param {*} port 
-     * @param {*} object 
-     * @param {*} rules 
+     * @param {*} host
+     * @param {*} port
+     * @param {*} object
+     * @param {*} rules
      */
     prettyPrint(hostParam, portParam, object, rules) {
         let host = hostParam === '0.0.0.0' ? 'localhost' : hostParam,

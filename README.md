@@ -4,7 +4,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/steamer-plugin-mock.svg?style=flat)](https://www.npmjs.com/package/steamer-plugin-mock)
 [![Travis](https://img.shields.io/travis/steamerjs/steamer-plugin-mock.svg)](https://travis-ci.org/steamerjs/steamer-plugin-mock)
-[![Deps](https://david-dm.org/steamerjs/steamer-plugin-mock.svg)](https://david-dm.org/steamerjs/steamer-plugin-mock)
+[![Deps](https://img.shields.io/david/steamerjs/steamer-plugin-mock.svg)](https://david-dm.org/steamerjs/steamer-plugin-mock)
 [![Coverage](https://img.shields.io/coveralls/steamerjs/steamer-plugin-mock.svg)](https://coveralls.io/github/steamerjs/steamer-plugin-mock)
 
 ## 安装
